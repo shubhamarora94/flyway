@@ -7,18 +7,18 @@ on:
   workflow_dispatch:
 
 env:
- ACR data
-  ACR_ADDR: testregistry71.azurecr.io
-#  ACR_NAME: testregistry71
-#  ACR_ADMIN_USER: testregistry71
-#  DOCKER_CMD: "sudo docker"
-#  IMAGE: python
+# ACR data
+  ACR_ADDR: testregistry91.azurecr.io
+  ACR_NAME: testregistry91
+  ACR_ADMIN_USER: testregistry91
+  DOCKER_CMD: "sudo docker"
+  IMAGE: python
   # needed to access AKS
-#  CLUSTER_NAME: k8-cluster
-#  CLUSTER_RG: k8-cluster
-#  NAMESPACE: default
+  CLUSTER_NAME: k8-cluster2
+  CLUSTER_RG: k8-cluster_group2
+  NAMESPACE: default
   # keyvault parameters
-#  KEYVAULTNAME: testKVtomcat2
+  KEYVAULTNAME: testKVtomcat2
 
 jobs:
   build-and-package:
@@ -34,7 +34,6 @@ jobs:
       - name: Install buildpack
         run: |
           (curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.19.0/pack-v0.19.0-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
-
       # build image
       - name: Run buildpack python
         run: |
@@ -48,7 +47,6 @@ jobs:
           docker tag ${{ env.ACR_ADDR }}/${{ env.IMAGE }}:${{ github.sha }} ${{ env.ACR_ADDR }}/${{ env.IMAGE }}:latest
           docker push ${{ env.ACR_ADDR }}/${{ env.IMAGE }}:${{ github.sha }}
           docker push ${{ env.ACR_ADDR }}/${{ env.IMAGE }}:latest
-
   deploy-python:
     needs: build-and-package 
     runs-on: ubuntu-latest
