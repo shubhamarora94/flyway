@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-# ACR data
-#  ACR_ADDR: testregistry71.azurecr.io
+ ACR data
+  ACR_ADDR: testregistry71.azurecr.io
 #  ACR_NAME: testregistry71
 #  ACR_ADMIN_USER: testregistry71
 #  DOCKER_CMD: "sudo docker"
