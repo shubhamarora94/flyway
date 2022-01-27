@@ -32,6 +32,12 @@ jobs:
       - name: Install dependencies
         run: mvn clean install
         shell: bash
+        
+      - name: Archive build
+        uses: actions/upload-artifact@v1
+        with:
+          name: frontend-angular
+          path: './flyway-core/target/flyway-core-0-SNAPSHOT.jar' 
        # Install pack CLI
       - name: Install buildpack
         run: |
