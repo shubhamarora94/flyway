@@ -41,7 +41,7 @@ jobs:
       - name: Java version
         uses: actions/setup-java@v1
         with:
-          java-version: '8'
+          java-version: '11'
        # Install pack CLI
       - name: Install buildpack
         run: |
