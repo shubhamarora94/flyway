@@ -29,7 +29,9 @@ jobs:
         uses: actions/checkout@master
       #  with:
       #    ref: master
-
+      - name: Install dependencies
+        run: mvn clean install
+        shell: bash
        # Install pack CLI
       - name: Install buildpack
         run: |
@@ -37,7 +39,7 @@ jobs:
       # build image
       - name: Run buildpack python
         run: |
-          pack build test_img --buildpack 'gcr.io/paketo-buildpacks/java' --builder paketobuildpacks/builder:base --path ./flyway-core/
+          pack build test_img --buildpack 'gcr.io/paketo-buildpacks/java' --builder paketobuildpacks/builder:base --path ./flyway-core/target/*.jar
       - name: Login to ACR
         run: docker login -u ${{ env.ACR_ADMIN_USER }} -p ${{ secrets.ACR_PASSWORD }} ${{ env.ACR_ADDR }}
 
