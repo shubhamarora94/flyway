@@ -12,7 +12,7 @@ env:
   ACR_NAME: testregistry9
   ACR_ADMIN_USER: testregistry9
   DOCKER_CMD: "sudo docker"
-  IMAGE: test
+  IMAGE: flyway
   # needed to access AKS
   CLUSTER_NAME: k8-cluster2
   CLUSTER_RG: k8-cluster_group2
@@ -52,7 +52,7 @@ jobs:
       # build image
       - name: Run buildpack python
         run: |
-          pack build test --env BP_MAVEN_BUILT_ARTIFACT='./flyway-core/target/flyway-core-0-SNAPSHOT.jar' --buildpack 'gcr.io/paketo-buildpacks/java' --builder paketobuildpacks/builder:base
+          pack build ${{ env.ACR_NAME }}.azurecr.io/${{ env.IMAGE }}:${{ github.sha }} --env BP_MAVEN_BUILT_ARTIFACT='./flyway-core/target/flyway-core-0-SNAPSHOT.jar' --buildpack 'gcr.io/paketo-buildpacks/java' --builder paketobuildpacks/builder:base
       - name: Login to ACR
         run: docker login -u ${{ env.ACR_ADMIN_USER }} -p ${{ secrets.ACR_PASSWORD }} ${{ env.ACR_ADDR }}
 
