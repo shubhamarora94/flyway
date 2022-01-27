@@ -38,6 +38,10 @@ jobs:
 #        with:
 #          name: test
 #          path: './flyway-core/target/flyway-core-0-SNAPSHOT.jar' 
+      - name: Java version
+        uses: actions/setup-java@v1
+        with:
+          java-version: '8'
        # Install pack CLI
       - name: Install buildpack
         run: |
