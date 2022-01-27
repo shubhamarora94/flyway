@@ -29,15 +29,15 @@ jobs:
         uses: actions/checkout@master
       #  with:
       #    ref: master
-      - name: Install dependencies
-        run: mvn clean install
-        shell: bash
+#      - name: Install dependencies
+#        run: mvn clean install
+#        shell: bash
         
-      - name: Archive build
-        uses: actions/upload-artifact@v1
-        with:
-          name: test
-          path: './flyway-core/target/flyway-core-0-SNAPSHOT.jar' 
+#      - name: Archive build
+#        uses: actions/upload-artifact@v1
+#        with:
+#          name: test
+#          path: './flyway-core/target/flyway-core-0-SNAPSHOT.jar' 
        # Install pack CLI
       - name: Install buildpack
         run: |
