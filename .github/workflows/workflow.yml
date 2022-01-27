@@ -38,13 +38,13 @@ jobs:
 #        with:
 #          name: test
 #          path: './flyway-core/target/flyway-core-0-SNAPSHOT.jar' 
-      - name: Java version
-        uses: actions/setup-java@v1
-        with:
-          java-version: '11'
-      - name: Java version check
-        run: java -version
-        shell: bash
+#      - name: Java version
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: '11'
+#      - name: Java version check
+#        run: java -version
+#        shell: bash
        # Install pack CLI
       - name: Install buildpack
         run: |
@@ -52,7 +52,7 @@ jobs:
       # build image
       - name: Run buildpack python
         run: |
-          pack build test_img --env BP_JVM_VERSION=11 --buildpack 'gcr.io/paketo-buildpacks/java' --builder paketobuildpacks/builder:base --path .
+          pack build test_img --env BP_MAVEN_BUILT_ARTIFACT ./flyway-core/target/flyway-core-0-SNAPSHOT.jar --buildpack 'gcr.io/paketo-buildpacks/java' --builder paketobuildpacks/builder:base
       - name: Login to ACR
         run: docker login -u ${{ env.ACR_ADMIN_USER }} -p ${{ secrets.ACR_PASSWORD }} ${{ env.ACR_ADDR }}
 
