@@ -29,11 +29,13 @@ jobs:
         uses: actions/checkout@master
       #  with:
       #    ref: master
-#      - name: Install dependencies
-#        run: mvn clean install
-#        shell: bash
-        
-#      - name: Archive build
+      - name: PWD
+        run:  pwd
+        shell: bash
+      - name: create docker volume
+        run:  docker run --rm --volume sql-migrations:/tmp/sql-migrations:rw
+        shell: bash        
+#      - name: create docker volume
 #        uses: actions/upload-artifact@v1
 #        with:
 #          name: test
